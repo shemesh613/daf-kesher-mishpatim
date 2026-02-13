@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📖 דף קשר – פרשת משפטים – כיתה ב'2</title>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&family=Secular+One&family=Varela+Round&family=Frank+Ruhl+Libre:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #C4973B;
+  --gold-light: #F5E6C8;
+  --gold-bg: #FDF8EF;
+  --blue: #1A5276;
+  --blue-light: #D4E6F1;
+  --teal: #0B7A8A;
+  --teal-light: #D1F2EB;
+  --coral: #E74C3C;
+  --coral-light: #FADBD8;
+  --green: #27AE60;
+  --green-light: #D5F5E3;
+  --purple: #8E44AD;
+  --purple-light: #E8DAEF;
+  --cream: #FEFCF7;
+  --text: #2C3E50;
+  --text-light: #5D6D7E;
+  --border: #E8E0D0;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Varela Round', 'Rubik', sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+}
+.hero {
+  background: linear-gradient(135deg, #1A5276 0%, #0B7A8A 50%, #1A5276 100%);
+  color: white;
+  text-align: center;
+  padding: 40px 20px 35px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.5;
+}
+.hero-content { position: relative; z-index: 1; }
+.hero-bsd { font-size: 0.85rem; opacity: 0.7; margin-bottom: 10px; font-family: 'Frank Ruhl Libre', serif; }
+.hero-icon { font-size: 3rem; margin-bottom: 10px; }
+.hero-title { font-family: 'Secular One', sans-serif; font-size: clamp(1.6rem, 5vw, 2.4rem); margin-bottom: 6px; text-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+.hero-parasha { font-family: 'Frank Ruhl Libre', serif; font-size: clamp(1.1rem, 3vw, 1.5rem); color: var(--gold-light); font-weight: 500; }
+.hero-class { margin-top: 8px; font-size: 0.95rem; opacity: 0.8; }
+.hero-candles { display: flex; justify-content: center; gap: 12px; margin-top: 15px; font-size: 1.5rem; }
+.greeting {
+  max-width: 800px; margin: -20px auto 0; padding: 28px 30px 20px;
+  background: white; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  position: relative; z-index: 2; text-align: center; border-top: 4px solid var(--gold);
+}
+.greeting-text { font-size: 1.05rem; color: var(--text-light); }
+.greeting-text strong { color: var(--text); }
+.container { max-width: 800px; margin: 0 auto; padding: 20px 16px 40px; }
+.card {
+  background: white; border-radius: 16px; margin-bottom: 20px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04); overflow: hidden; border: 1px solid var(--border);
+}
+.card-header {
+  padding: 16px 24px; display: flex; align-items: center; gap: 12px;
+  cursor: pointer; transition: background 0.2s; user-select: none;
+}
+.card-header:hover { background: rgba(0,0,0,0.015); }
+.card-icon {
+  width: 44px; height: 44px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0;
+}
+.card-title { font-family: 'Secular One', sans-serif; font-size: 1.1rem; flex: 1; }
+.card-subtitle { font-size: 0.8rem; color: var(--text-light); font-family: 'Varela Round', sans-serif; font-weight: 400; }
+.card-toggle { font-size: 1.2rem; transition: transform 0.3s; color: var(--text-light); }
+.card.open .card-toggle { transform: rotate(180deg); }
+.card-body { padding: 0 24px 24px; display: none; animation: fadeIn 0.3s ease; }
+.card.open .card-body { display: block; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.card-torah .card-icon { background: var(--blue-light); color: var(--blue); }
+.card-torah .card-header { border-right: 4px solid var(--blue); }
+.card-song .card-icon { background: var(--gold-light); color: var(--gold); }
+.card-song .card-header { border-right: 4px solid var(--gold); }
+.card-navi .card-icon { background: var(--purple-light); color: var(--purple); }
+.card-navi .card-header { border-right: 4px solid var(--purple); }
+.card-math .card-icon { background: var(--teal-light); color: var(--teal); }
+.card-math .card-header { border-right: 4px solid var(--teal); }
+.card-hebrew .card-icon { background: var(--green-light); color: var(--green); }
+.card-hebrew .card-header { border-right: 4px solid var(--green); }
+.card-mishna .card-icon { background: var(--coral-light); color: var(--coral); }
+.card-mishna .card-header { border-right: 4px solid var(--coral); }
+.card-comic .card-icon { background: #FFF3E0; color: #E65100; }
+.card-comic .card-header { border-right: 4px solid #FF9800; }
+.content-text { font-size: 0.98rem; line-height: 1.9; color: var(--text); }
+.content-text p { margin-bottom: 12px; }
+.highlight-verse {
+  background: linear-gradient(135deg, var(--gold-bg), #FFF8E1); border-radius: 10px;
+  padding: 12px 18px; margin: 12px 0; border-right: 3px solid var(--gold);
+  font-family: 'Frank Ruhl Libre', serif; font-size: 1.05rem; font-weight: 500; color: #5D4037;
+}
+.karaoke-banner {
+  background: linear-gradient(135deg, #0a1628 0%, #0d2137 50%, #121a2e 100%);
+  border-radius: 16px; padding: 28px 24px; margin-bottom: 20px;
+  text-align: center; color: white; position: relative; overflow: hidden;
+  cursor: pointer; transition: transform 0.3s, box-shadow 0.3s; text-decoration: none; display: block;
+}
+.karaoke-banner:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(255,209,102,0.2); }
+.karaoke-banner::before {
+  content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+  background: radial-gradient(circle at 30% 50%, rgba(255,209,102,0.08) 0%, transparent 50%);
+  animation: shimmer-bg 6s linear infinite;
+}
+@keyframes shimmer-bg { 0% { transform: translateX(-30%); } 100% { transform: translateX(30%); } }
+.karaoke-banner-content { position: relative; z-index: 1; }
+.karaoke-emoji { font-size: 3rem; margin-bottom: 8px; }
+.karaoke-title { font-family: 'Secular One', sans-serif; font-size: 1.4rem; color: #FFD166; margin-bottom: 4px; }
+.karaoke-desc { font-size: 0.9rem; opacity: 0.7; margin-bottom: 14px; }
+.karaoke-play-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: linear-gradient(135deg, #FFD166, #ffaa44); color: #1a1a2e;
+  padding: 10px 28px; border-radius: 50px; font-family: 'Varela Round', sans-serif;
+  font-size: 1rem; font-weight: 700; box-shadow: 0 0 20px rgba(255,209,102,0.3);
+}
+.comic-img { width: 100%; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); margin-top: 8px; }
+.song-sheet-img { width: 100%; max-width: 500px; margin: 12px auto; display: block; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+.footer {
+  text-align: center; padding: 30px 20px;
+  background: linear-gradient(135deg, #1A5276 0%, #0B7A8A 100%); color: white;
+}
+.footer-name { font-family: 'Secular One', sans-serif; font-size: 1.2rem; margin-bottom: 4px; }
+.footer-shabbat { font-size: 1.1rem; margin-bottom: 15px; }
+.footer-sign { font-size: 0.85rem; opacity: 0.6; margin-top: 12px; }
+.share-float { position: fixed; bottom: 20px; left: 20px; z-index: 100; }
+.share-fab {
+  width: 56px; height: 56px; border-radius: 50%; border: none;
+  display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+  cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.15); transition: transform 0.3s;
+  text-decoration: none; color: white; background: #25D366;
+}
+.share-fab:hover { transform: scale(1.1); }
+.section-divider {
+  display: flex; align-items: center; gap: 12px; margin: 24px 0 16px;
+  font-family: 'Secular One', sans-serif; font-size: 0.85rem; color: var(--text-light);
+}
+.section-divider::before, .section-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+@media (max-width: 600px) {
+  .greeting { margin: -15px 10px 0; padding: 22px 20px 16px; }
+  .container { padding: 16px 10px 30px; }
+  .card-header { padding: 14px 18px; }
+  .card-body { padding: 0 18px 18px; }
+}
+@media print {
+  .share-float, .karaoke-banner { display: none !important; }
+  .card-body { display: block !important; }
+  .card { break-inside: avoid; box-shadow: none; border: 1px solid #ccc; }
+}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-bsd">בס"ד 🕯️</div>
+    <div class="hero-icon">📖</div>
+    <h1 class="hero-title">דף קשר – כיתה ב'2</h1>
+    <div class="hero-parasha">ערב שבת קודש פרשת "משפטים"</div>
+    <div class="hero-class">שמשון ג'יקוב</div>
+    <div class="hero-candles">🕯️ 🕯️</div>
+  </div>
+</div>
+<div class="greeting">
+  <div class="greeting-text"><strong>להורים היקרים ✨</strong><br>שלום וברכה!</div>
+</div>
+<div class="container">
+  <a class="karaoke-banner" href="karaoke.html">
+    <div class="karaoke-banner-content">
+      <div class="karaoke-emoji">🏮</div>
+      <div class="karaoke-title">🎵 שיר "פנס פנימי" – קראוקי אינטראקטיבי</div>
+      <div class="karaoke-desc">לחצו להאזנה עם מילים מוארות בזמן אמת</div>
+      <div class="karaoke-play-btn">▶ הפעילו את השיר</div>
+    </div>
+  </a>
+  <div class="section-divider">📚 מה למדנו השבוע 📚</div>
+
+  <div class="card card-torah open" id="cardTorah">
+    <div class="card-header" onclick="toggleCard('cardTorah')">
+      <div class="card-icon">🌊</div>
+      <div><div class="card-title">פרשת בשלח – שירת הים</div><div class="card-subtitle">המשך מהשבוע שעבר</div></div>
+      <span class="card-toggle">▾</span>
+    </div>
+    <div class="card-body"><div class="content-text">
+      <p><strong>המשכנו בפרשת "בשלח" – קריעת ים סוף ושירת הים 🌊</strong><br>(המשך מהשבוע שעבר – המצרים נכנסו לתוך הים אחרי ישראל)</p>
+      <p>ומה עשה עמוד האש? <strong>הרתיח את השביל והוא הפך לבוץ רותח</strong> 🔥 ומה קרה לאופני המרכבות? הם ניתכו מרוב חום, ויושביהם התטלטלו מצד לצד, עד שנזרקו מהרכב...</p>
+      <p>ומה קרה לסוסים? גם הם קפצו מרוב חום, הרוכבים עפו והסוסים נחתו עליהם והרגום 🐎</p>
+      <p>ומה אמר ד' למשה? <strong>"נטה את ידך על הים"</strong>. נטה משה את ידו על הים, וחומות המים התמוטטו ונפלו על המצרים.</p>
+      <div class="highlight-verse">"וינער ד' את המצרים" – ולפני שהם מתו, הם סוף סוף הכירו בגדולת ד'.</div>
+      <div class="highlight-verse">"ויושע ד' ביום ההוא את ישראל מיד מצרים" 🌊</div>
+      <p>כאשר עלו כל ישראל מהים, ממה הם פחדו? אולי כמו שאנחנו עלינו מהצד הזה, המצרים עולים מהצד השני... הסתכלו ישראל בים, ומה הם ראו? <strong>כל אחד ראה את הנוגש שלו</strong>... עכשיו כבר לא צריך לפחד יותר מהמצרים!</p>
+      <div class="highlight-verse">"ויראו העם את ד'" – כשראו בני ישראל את ידו הגדולה של ה' יראו ממנו יראה של כבוד – יראת הרוממות.</div>
+      <p><strong>🎵 שירת הים 🎵</strong></p>
+      <p>עמדו כל ישראל על שפת הים, יחד עם משה, ורצו לתת שבח לד' על הישועה האדירה ועל הנס הגדול שבקריעת הים.</p>
+      <div class="highlight-verse">"אשירה לד' כי גאה גאה" – נשיר לה' שהתגאה על המצרים.<br>"סוס ורוכבו רמה בים" – ד' השליך את הפרש יחד עם הסוס בתוך הים.</div>
+      <div class="highlight-verse">"זה א-לי ואנווהו" – נספר ביופיו ונשבח אותו.<br>"אלוקי אבי וארוממנהו" – נספר בגדולתו וברוממותו.</div>
+      <p>"ד' איש מלחמה" – ועם מה ד' נלחם? <strong>"ד' שמו" – עם שמו בלבד</strong>, ואינו נצרך לכלי מלחמה.</p>
+      <p>את מי השליך ד' לים? "מרכבות פרעה", "חילו", "ומבחר שלישיו" – המפקדים המובחרים. ולהיכן הם הגיעו? <strong>"תהומות יכסיומו"</strong> – תהומות הים כיסו אותם, והם ירדו למצולות "כמו אבן".</p>
+      <div class="highlight-verse">"מִי כָמֹכָה בָּאֵלִם ד'" – שאין חזק וקדוש כמו ד'. ומהו "נורא תהילות"? שאנו יראים לספר את תהילות ד', כיון שאין להם סוף.</div>
+      <p>כיצד הגיבו העמים כאשר שמעו את ניסי יציאת מצרים?</p>
+      <p>🌍 "שָׁמְעוּ עַמִּים יִרְגָּזוּן" – ונבהלו<br>⚔️ הפלישתים – "חִיל אָחַז יֹשְׁבֵי פְּלָשֶׁת"<br>😰 "אָז נִבְהֲלוּ אַלּוּפֵי אֱדוֹם, אֵילֵי מוֹאָב יֹאחֲזֵמוֹ רָעַד"<br>💧 ועמי כנען – "נָמֹגוּ" וליבם נמס מפחד</p>
+    </div></div>
+  </div>
+
+  <div class="card card-song" id="cardSong">
+    <div class="card-header" onclick="toggleCard('cardSong')">
+      <div class="card-icon">🎵</div>
+      <div><div class="card-title">שירים ששרנו</div><div class="card-subtitle">"מרכבות פרעה" + "פנס פנימי"</div></div>
+      <span class="card-toggle">▾</span>
+    </div>
+    <div class="card-body">
+      <img src="song-sheet.png" alt="דף שיר - פנס פנימי" class="song-sheet-img">
+      <div style="text-align:center; margin-top: 14px;">
+        <a href="karaoke.html" style="display:inline-flex; align-items:center; gap:8px; background:linear-gradient(135deg,#FFD166,#ffaa44); color:#1a1a2e; padding:10px 24px; border-radius:50px; text-decoration:none; font-weight:700; font-size:0.95rem;">🎤 הפעילו קראוקי אינטראקטיבי</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card card-mishna" id="cardMishna">
+    <div class="card-header" onclick="toggleCard('cardMishna')">
+      <div class="card-icon">📖</div>
+      <div><div class="card-title">משנה</div><div class="card-subtitle">הגענו עד פרק ה משנה א</div></div>
+      <span class="card-toggle">▾</span>
+    </div>
+    <div class="card-body"><div class="content-text"><p>הגענו עד <strong>פרק ה משנה א</strong>.</p></div></div>
+  </div>
+
+  <div class="card card-navi" id="cardNavi">
+    <div class="card-header" onclick="toggleCard('cardNavi')">
+      <div class="card-icon">📜</div>
+      <div><div class="card-title">נביא – הרב נהוראי</div><div class="card-subtitle">שופטים פרק ח'</div></div>
+      <span class="card-toggle">▾</span>
+    </div>
+    <div class="card-body"><div class="content-text">
+      <p>נביא שופטים, <strong>פרק ח' פסוקים ט"ז-ל"ב</strong>. סיימנו את הפרק, בשינון ובהבנה.</p>
+      <p>עשינו מבחן על הפרק <strong>והתלמידים ידעו היטב – ענו יפה ונכון</strong>. 👏</p>
+      <p>📝 <strong>בשבוע הבא אי"ה תהיה פעילות כיתתית לחזרה</strong> – נא ודאו שיש כלי כתיבה (עיפרון, דבק ומספריים) לבנכם נ"י.</p>
+    </div></div>
+  </div>
+
+  <div class="card card-math" id="cardMath">
+    <div class="card-header" onclick="toggleCard('cardMath')">
+      <div class="card-icon">📐</div>
+      <div><div class="card-title">חשבון – הרב אליהו שמשון</div></div>
+      <span class="card-toggle">▾</span>
+    </div>
+    <div class="card-body"><div class="content-text"><p></p></div></div>
+  </div>
+
+  <div class="card card-hebrew" id="cardHebrew">
+    <div class="card-header" onclick="toggleCard('cardHebrew')">
+      <div class="card-icon">✏️</div>
+      <div><div class="card-title">עברית – המורה טובי</div><div class="card-subtitle">הבנת הנקרא + סודות הכתיב</div></div>
+      <span class="card-toggle">▾</span>
+    </div>
+    <div class="card-body"><div class="content-text">
+      <p>השבוע למדנו בהבנת הנקרא את הסיפור <strong>"נשף מסכות"</strong> והתלמידים ידעו לענות נפלא את התשובות על פי כל כללי הכתיב.</p>
+      <p>בסודות הכתיב התחלנו ללמוד על <strong>אותיות מוספיות מש"ה וכל"ב</strong>.</p>
+      <p>📚 שיעורי בית: <strong>עמ' 87</strong></p>
+      <p>🌟 <em>התלמידים מתקדמים המון, כיף ללמוד כך!</em></p>
+    </div></div>
+  </div>
+
+  <div class="section-divider">🎨 קומיקס לשבת 🎨</div>
+
+  <div class="card card-comic" id="cardComic1">
+    <div class="card-header" onclick="toggleCard('cardComic1')">
+      <div class="card-icon">🎭</div>
+      <div><div class="card-title">קומיקס – טראמפ והילד המתפלל</div><div class="card-subtitle">משנה א</div></div>
+      <span class="card-toggle">▾</span>
+    </div>
+    <div class="card-body"><img src="comic-mishna.png" alt="קומיקס - טראמפ והילד המתפלל" class="comic-img"></div>
+  </div>
+
+  <div class="card card-comic" id="cardComic2">
+    <div class="card-header" onclick="toggleCard('cardComic2')">
+      <div class="card-icon">🌸</div>
+      <div><div class="card-title">קומיקס – הסוד של חברות אמיתית</div><div class="card-subtitle">חברות ושיתוף</div></div>
+      <span class="card-toggle">▾</span>
+    </div>
+    <div class="card-body"><img src="comic-friendship.png" alt="קומיקס - הסוד של חברות אמיתית" class="comic-img"></div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-shabbat">🕯️ שבת שלום ומבורכת! 🕯️</div>
+  <div class="footer-name">שמשון ג'יקוב</div>
+  <div class="footer-sign">חתימת הורים ________________</div>
+</div>
+
+<div class="share-float">
+  <a class="share-fab" href="#" onclick="shareWhatsApp(event)" title="שיתוף בווטסאפ">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+</div>
+
+<script>
+function toggleCard(id) { document.getElementById(id).classList.toggle('open'); }
+function shareWhatsApp(e) {
+  e.preventDefault();
+  const url = window.location.href;
+  const text = encodeURIComponent('📖 דף קשר – פרשת משפטים – כיתה ב\'2\n🎵 כולל שיר קראוקי אינטראקטיבי!\n🔗 ' + url);
+  window.open('https://wa.me/?text=' + text, '_blank');
+}
+if (window.innerWidth > 600) { document.querySelectorAll('.card').forEach(c => c.classList.add('open')); }
+</script>
+</body>
+</html>
